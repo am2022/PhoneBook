@@ -1,8 +1,9 @@
 import sqlite3
 
-con = sqlite3.connect(r'./PBDB.db')
-
 class data:
+    def __init__(self, database_name):
+        self.con = sqlite3.connect(f'./{database_name}')
+
     def LoadAll(con):
 
         cursorObj = con.cursor()
