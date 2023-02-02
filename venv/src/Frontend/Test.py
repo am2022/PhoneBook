@@ -1,8 +1,8 @@
 import  sqlite3
 from ..Backend import PhoneBookBack
 
-con = sqlite3.connect(r'./PBDB.db')
+con = sqlite3.connect(r'../Backend/PBDB.db')
+load = PhoneBookBack.LoadAll(con)
 
-baeckend = PhoneBookBack.LoadAll()
+print(load)
 
-print(baeckend)
