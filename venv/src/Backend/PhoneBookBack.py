@@ -20,14 +20,52 @@ def Add(con,name,family,phonenumber):
 
 
 
+def Remove(con,contactID):
+    cursorObj = con.cursor()
+    cursorObj.execute(f"DELETE FROM contact WHERE ID='{contactID}'")
+    con.commit()
+
 def Update(con,contactID,name,family,phonenumber):
     cursorObj = con.cursor()
     cursorObj.execute(f"UPDATE contact SET Name='{name}',Family='{family}',PhoneNumber='{phonenumber}' WHERE ID='{contactID}'")
     con.commit()
 
 
+def SearchByID(con,contactID):
+    cursorObj = con.cursor()
 
+    cursorObj.execute(f"SELECT * FROM contact WHERE ID='{contactID}'")
 
+    rows = cursorObj.fetchall()
+
+    return rows
+
+def SearchByName(con,name):
+    cursorObj = con.cursor()
+
+    cursorObj.execute(f"SELECT * FROM contact WHERE Name='{name}'")
+
+    rows = cursorObj.fetchall()
+
+    return rows
+
+def SearchByFamily(con,family):
+    cursorObj = con.cursor()
+
+    cursorObj.execute(f"SELECT * FROM contact WHERE Family='{family}'")
+
+    rows = cursorObj.fetchall()
+
+    return rows
+
+def SearchByPhoneNumber(con,phonenumber):
+    cursorObj = con.cursor()
+
+    cursorObj.execute(f"SELECT * FROM contact WHERE PhoneNumber='{phonenumber}'")
+
+    rows = cursorObj.fetchall()
+
+    return rows
 
 
 
