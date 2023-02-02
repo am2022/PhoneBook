@@ -2,7 +2,7 @@ import sqlite3
 
 con = sqlite3.connect(r'./PBDB.db')
 
-def sql_fetch(con):
+def LoadAll(con):
 
     cursorObj = con.cursor()
 
@@ -10,15 +10,16 @@ def sql_fetch(con):
 
     rows = cursorObj.fetchall()
 
-    # for row in rows:
-    #
-    #     data = [].append(row)
-    # return data
     return rows
 
-bac = sql_fetch(con)
-for person in range(len(bac)):
-    for item in range(1,4):
-        print(bac[person][item])
-    print("--==--==--==--")
+def Add(con,name,family,phonenumber):
+    entities = (name,family,phonenumber)
+    cursorObj = con.cursor()
+    cursorObj.execute("INSERT INTO contact(Name,Family,PhoneNumber)VALUES (?,?,?)",entities)
+    con.commit()
+
+
+
+
+
 
