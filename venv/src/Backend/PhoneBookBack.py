@@ -1,73 +1,54 @@
 import sqlite3
 
-con = sqlite3.connect(r'./PBDB.db')
+class data:
+    def __init__(self, database_name):
+        self.con = sqlite3.connect(f'./{database_name}')
+        self.cursorObj = self.con.cursor()
 
-def LoadAll(con):
+    def LoadAll(self):
+        self.cursorObj.execute('SELECT * FROM contact')
 
-    cursorObj = con.cursor()
+        rows = self.cursorObj.fetchall()
 
-    cursorObj.execute('SELECT * FROM contact')
+        return rows
 
-    rows = cursorObj.fetchall()
+    def Add(self, name, family, phonenumber):
+        entities = (name, family, phonenumber)
+        self.cursorObj.execute("INSERT INTO contact(Name,Family,PhoneNumber)VALUES (?,?,?)", entities)
+        self.con.commit()
 
-    return rows
+    def Remove(self, contactID):
+        self.cursorObj.execute(f"DELETE FROM contact WHERE ID='{contactID}'")
+        self.con.commit()
 
-def Add(con,name,family,phonenumber):
-    entities = (name,family,phonenumber)
-    cursorObj = con.cursor()
-    cursorObj.execute("INSERT INTO contact(Name,Family,PhoneNumber)VALUES (?,?,?)",entities)
-    con.commit()
+    def Update(self, contactID, name, family, phonenumber):
+        self.cursorObj.execute(f"UPDATE contact SET Name='{name}',Family='{family}',PhoneNumber='{phonenumber}' WHERE ID='{contactID}'")
+        self.con.commit()
 
+    def SearchByID(self, contactID):
+        self.cursorObj.execute(f"SELECT * FROM contact WHERE ID='{contactID}'")
 
+        rows = self.cursorObj.fetchall()
 
-def Remove(con,contactID):
-    cursorObj = con.cursor()
-    cursorObj.execute(f"DELETE FROM contact WHERE ID='{contactID}'")
-    con.commit()
+        return rows
 
-def Update(con,contactID,name,family,phonenumber):
-    cursorObj = con.cursor()
-    cursorObj.execute(f"UPDATE contact SET Name='{name}',Family='{family}',PhoneNumber='{phonenumber}' WHERE ID='{contactID}'")
-    con.commit()
+    def SearchByName(self, name):
+        self.cursorObj.execute(f"SELECT * FROM contact WHERE Name='{name}'")
 
+        rows = self.cursorObj.fetchall()
 
-def SearchByID(con,contactID):
-    cursorObj = con.cursor()
+        return rows
 
-    cursorObj.execute(f"SELECT * FROM contact WHERE ID='{contactID}'")
+    def SearchByFamily(self, family):
+        self.cursorObj.execute(f"SELECT * FROM contact WHERE Family='{family}'")
 
-    rows = cursorObj.fetchall()
+        rows = self.cursorObj.fetchall()
 
-    return rows
+        return rows
 
-def SearchByName(con,name):
-    cursorObj = con.cursor()
+    def SearchByPhoneNumber(self, phonenumber):
+        cursorObj.execute(f"SELECT * FROM contact WHERE PhoneNumber='{phonenumber}'")
 
-    cursorObj.execute(f"SELECT * FROM contact WHERE Name='{name}'")
+        rows = self.cursorObj.fetchall()
 
-    rows = cursorObj.fetchall()
-
-    return rows
-
-def SearchByFamily(con,family):
-    cursorObj = con.cursor()
-
-    cursorObj.execute(f"SELECT * FROM contact WHERE Family='{family}'")
-
-    rows = cursorObj.fetchall()
-
-    return rows
-
-def SearchByPhoneNumber(con,phonenumber):
-    cursorObj = con.cursor()
-
-    cursorObj.execute(f"SELECT * FROM contact WHERE PhoneNumber='{phonenumber}'")
-
-    rows = cursorObj.fetchall()
-
-    return rows
-
-
-
-
-
+        return rows
