@@ -2,7 +2,7 @@ import sqlite3
 
 class data:
     def __init__(self, database_name):
-        self.con = sqlite3.connect(f'./{database_name}')
+        self.con = sqlite3.connect(f'../Backend/{database_name}')
         self.cursorObj = self.con.cursor()
 
     def LoadAll(self):
