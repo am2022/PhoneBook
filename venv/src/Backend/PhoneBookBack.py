@@ -20,6 +20,16 @@ def Add(con,name,family,phonenumber):
 
 
 
+def Update(con,contactID,name,family,phonenumber):
+    cursorObj = con.cursor()
+    cursorObj.execute(f"UPDATE contact SET Name='{name}',Family='{family}',PhoneNumber='{phonenumber}' WHERE ID='{contactID}'")
+    con.commit()
+
+
+
+
+
+
 
 
 
