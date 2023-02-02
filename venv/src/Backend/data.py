@@ -4,3 +4,6 @@ class data:
     def __init__(self, database_name):
         self.connection = sqlite3.connect("./" + database_name)
         self.cursor = connection.cursor()
+
+    def __del__(self):
+        self.connection.close()
