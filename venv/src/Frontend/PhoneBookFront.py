@@ -6,6 +6,7 @@ from tkinter import *
 root_win = Tk()
 root_win.title("phonebook")
 root_win.configure(bg="white")
+root_win.geometry("900x500")
 
 data = PhoneBookBack.data("PBDB.db")
 
