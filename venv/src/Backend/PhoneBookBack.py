@@ -5,6 +5,9 @@ class data:
         self.con = sqlite3.connect(f'../Backend/{database_name}')
         self.cursorObj = self.con.cursor()
 
+    def __del__(self):
+        self.con.close()
+
     def LoadAll(self):
         self.cursorObj.execute('SELECT * FROM contact')
 
