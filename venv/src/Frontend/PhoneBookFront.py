@@ -11,4 +11,7 @@ root_win.resizable(width=False, height=False)
 
 data = PhoneBookBack.data("PBDB.db")
 
+lb_main = Listbox(root_win, height=31, width=40)
+lb_main.place(x=0, y=0)
+
 root_win.mainloop()
