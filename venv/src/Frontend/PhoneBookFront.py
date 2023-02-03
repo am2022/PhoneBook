@@ -7,6 +7,7 @@ root_win = Tk()
 root_win.title("phonebook")
 root_win.configure(bg="white")
 root_win.geometry("900x500")
+root_win.resizable(width=False, height=False)
 
 data = PhoneBookBack.data("PBDB.db")
 
