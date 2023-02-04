@@ -15,17 +15,17 @@ class data:
 
         return rows
 
-    def Add(self, name, family, phonenumber):
-        entities = (name, family, phonenumber)
-        self.cursorObj.execute("INSERT INTO contact(Name,Family,PhoneNumber)VALUES (?,?,?)", entities)
+    def Add(self, name, family, phonenumber,address):
+        entities = (name, family, phonenumber,address)
+        self.cursorObj.execute("INSERT INTO contact(Name,Family,PhoneNumber,Address)VALUES (?,?,?,?)", entities)
         self.con.commit()
 
     def Remove(self, contactID):
         self.cursorObj.execute(f"DELETE FROM contact WHERE ID='{contactID}'")
         self.con.commit()
 
-    def Update(self, contactID, name, family, phonenumber):
-        self.cursorObj.execute(f"UPDATE contact SET Name='{name}',Family='{family}',PhoneNumber='{phonenumber}' WHERE ID='{contactID}'")
+    def Update(self, contactID, name, family, phonenumber,adress):
+        self.cursorObj.execute(f"UPDATE contact SET Name='{name}',Family='{family}',PhoneNumber='{phonenumber}',Adress='{adress}' WHERE ID='{contactID}'")
         self.con.commit()
 
     def SearchByID(self, contactID):
@@ -55,3 +55,4 @@ class data:
         rows = self.cursorObj.fetchall()
 
         return rows
+
