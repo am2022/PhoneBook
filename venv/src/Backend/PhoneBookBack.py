@@ -50,7 +50,7 @@ class data:
         return rows
 
     def SearchByPhoneNumber(self, phonenumber):
-        cursorObj.execute(f"SELECT * FROM contact WHERE PhoneNumber='{phonenumber}'")
+        self.cursorObj.execute(f"SELECT * FROM contact WHERE PhoneNumber='{phonenumber}'")
 
         rows = self.cursorObj.fetchall()
 
